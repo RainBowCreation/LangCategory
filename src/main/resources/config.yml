@@ -1,0 +1,20 @@
+# === StorageGateway connection (required) ===
+db: "main"
+secret: "CHANGE_ME_main_secret"
+
+# === Translation Category Policy ===
+translationPolicy:
+  # Where to persist per-player policy in StorageGateway
+  storage:
+    namespace: "lcatpolicy"   # logical bucket/table for policies
+    keyPrefix: "lcat:"     # per-user key => lcat:<uuid>
+
+  # Global default used until a player's policy is loaded/created
+  default:
+    # Modes:
+    #   ALL   -> translate every category (no filtering)
+    #   NONE  -> translate nothing (deny all)
+    #   ONLY  -> translate only categories listed below
+    #   EXCEPT-> translate all categories except those listed below
+    mode: "ALL"
+    categories: []          # e.g. ["ui", "system", "combat"]  (filenames → categories, lowercased)
